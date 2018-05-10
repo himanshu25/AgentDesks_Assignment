@@ -13,6 +13,7 @@ class FacilitiesWorker {
     
     static let sharedInstance = FacilitiesWorker()
 
+    // Use it if you want to use Alamofire
     func getFacilities() {
         request(url: "https://my-json-server.typicode.com/iranjith4/ad-assignment/db", type: .get) { (error, array) in
             
@@ -20,16 +21,12 @@ class FacilitiesWorker {
     }
     
     func getAllFacilities(with completion: @escaping facilitiesCompletionBlock) {
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        let url: URL = URL(string: "https://my-json-server.typicode.com/iranjith4/ad-assignment/db")!
-        let request = URLRequest(url: url)
-        
-        let dataTask = session.dataTask(with: request) { (data, response, error) in
+        let dataTask = session().dataTask(with: urlRequest()) { (data, response, error) in
             if let data = data {
                 do {
                     let facilitiesJson = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
                     let facilitiesDict = facilitiesJson as? [String: AnyObject]
+                    print(facilitiesDict)
                     completion(nil, [""])
                 } catch let error as NSError {
                     print(error.localizedDescription)
@@ -38,4 +35,15 @@ class FacilitiesWorker {
         }
         dataTask.resume()
     }
+    
+    func urlRequest() -> URLRequest {
+        let url: URL = URL(string: "https://my-json-server.typicode.com/iranjith4/ad-assignment/db")!
+        return URLRequest(url: url)
+    }
+    
+    func session() -> URLSession {
+        let config = URLSessionConfiguration.default
+        return URLSession(configuration: config)
+    }
+    
 }

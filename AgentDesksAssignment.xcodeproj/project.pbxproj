@@ -136,6 +136,7 @@
 		A30B6DF520A4C7D5001D6E4B /* AgentDesksAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				A30B6E5020A4DA6D001D6E4B /* Worker */,
 				A30B6E2720A4C81E001D6E4B /* Reusable components */,
 				A30B6DF620A4C7D5001D6E4B /* AppDelegate.swift */,
 				A30B6DF820A4C7D5001D6E4B /* ViewController.swift */,
@@ -144,8 +145,6 @@
 				A30B6E0220A4C7D6001D6E4B /* LaunchScreen.storyboard */,
 				A30B6E0520A4C7D6001D6E4B /* Info.plist */,
 				A30B6DFD20A4C7D5001D6E4B /* AgentDesksAssignment.xcdatamodeld */,
-				A30B6E3020A4CA70001D6E4B /* FacilitiesInteractor+Alamofire.swift */,
-				A30B6E2E20A4CA52001D6E4B /* FacilitiesInteractor.swift */,
 			);
 			path = AgentDesksAssignment;
 			sourceTree = "<group>";
@@ -176,6 +175,15 @@
 				A30B6E2A20A4C81E001D6E4B /* PopoverView.xib */,
 			);
 			path = "Reusable components";
+			sourceTree = "<group>";
+		};
+		A30B6E5020A4DA6D001D6E4B /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				A30B6E3020A4CA70001D6E4B /* FacilitiesInteractor+Alamofire.swift */,
+				A30B6E2E20A4CA52001D6E4B /* FacilitiesInteractor.swift */,
+			);
+			path = Worker;
 			sourceTree = "<group>";
 		};
 		DB77636C68C27BB5132C13A7 /* Pods */ = {
