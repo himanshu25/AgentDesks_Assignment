@@ -1,0 +1,6 @@
+framework module Pods_AgentDesksAssignmentTests {
+  umbrella header "Pods-AgentDesksAssignmentTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
