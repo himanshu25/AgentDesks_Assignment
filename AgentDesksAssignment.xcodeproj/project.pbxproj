@@ -21,6 +21,9 @@
 		A30B6E2D20A4C81E001D6E4B /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30B6E2A20A4C81E001D6E4B /* PopoverView.xib */; };
 		A30B6E2F20A4CA52001D6E4B /* FacilitiesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30B6E2E20A4CA52001D6E4B /* FacilitiesInteractor.swift */; };
 		A30B6E3120A4CA70001D6E4B /* FacilitiesInteractor+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30B6E3020A4CA70001D6E4B /* FacilitiesInteractor+Alamofire.swift */; };
+		A30B6E6420A4DDD2001D6E4B /* ListItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30B6E6020A4DDD2001D6E4B /* ListItemView.xib */; };
+		A30B6E6620A4DDD2001D6E4B /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30B6E6220A4DDD2001D6E4B /* ListItemView.swift */; };
+		A30B6E6720A4DDD2001D6E4B /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30B6E6320A4DDD2001D6E4B /* ListItemTableViewCell.swift */; };
 		D3940215F7FFF64283660389 /* Pods_AgentDesksAssignmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC8DA90FB878F9370EDD8D9 /* Pods_AgentDesksAssignmentUITests.framework */; };
 		ECBD8FC7C144919C5ABDA815 /* Pods_AgentDesksAssignment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089749B14956A97FF009C2F0 /* Pods_AgentDesksAssignment.framework */; };
 /* End PBXBuildFile section */
@@ -68,6 +71,9 @@
 		A30B6E2A20A4C81E001D6E4B /* PopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverView.xib; sourceTree = "<group>"; };
 		A30B6E2E20A4CA52001D6E4B /* FacilitiesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitiesInteractor.swift; sourceTree = "<group>"; };
 		A30B6E3020A4CA70001D6E4B /* FacilitiesInteractor+Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacilitiesInteractor+Alamofire.swift"; sourceTree = "<group>"; };
+		A30B6E6020A4DDD2001D6E4B /* ListItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListItemView.xib; sourceTree = "<group>"; };
+		A30B6E6220A4DDD2001D6E4B /* ListItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
+		A30B6E6320A4DDD2001D6E4B /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		B1881934C270663229B2CB9B /* Pods_AgentDesksAssignmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentDesksAssignmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE38B3BC8D76A419C4DD5CC /* Pods-AgentDesksAssignmentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentDesksAssignmentTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgentDesksAssignmentTests/Pods-AgentDesksAssignmentTests.release.xcconfig"; sourceTree = "<group>"; };
 		FCC8DA90FB878F9370EDD8D9 /* Pods_AgentDesksAssignmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentDesksAssignmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +142,9 @@
 		A30B6DF520A4C7D5001D6E4B /* AgentDesksAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				A30B6E6320A4DDD2001D6E4B /* ListItemTableViewCell.swift */,
+				A30B6E6220A4DDD2001D6E4B /* ListItemView.swift */,
+				A30B6E6020A4DDD2001D6E4B /* ListItemView.xib */,
 				A30B6E5020A4DA6D001D6E4B /* Worker */,
 				A30B6E2720A4C81E001D6E4B /* Reusable components */,
 				A30B6DF620A4C7D5001D6E4B /* AppDelegate.swift */,
@@ -316,6 +325,7 @@
 				A30B6E0120A4C7D6001D6E4B /* Assets.xcassets in Resources */,
 				A30B6E2D20A4C81E001D6E4B /* PopoverView.xib in Resources */,
 				A30B6DFC20A4C7D5001D6E4B /* Main.storyboard in Resources */,
+				A30B6E6420A4DDD2001D6E4B /* ListItemView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +502,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30B6E6720A4DDD2001D6E4B /* ListItemTableViewCell.swift in Sources */,
+				A30B6E6620A4DDD2001D6E4B /* ListItemView.swift in Sources */,
 				A30B6DFF20A4C7D5001D6E4B /* AgentDesksAssignment.xcdatamodeld in Sources */,
 				A30B6E2F20A4CA52001D6E4B /* FacilitiesInteractor.swift in Sources */,
 				A30B6E3120A4CA70001D6E4B /* FacilitiesInteractor+Alamofire.swift in Sources */,
