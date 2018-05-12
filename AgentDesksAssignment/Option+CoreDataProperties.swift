@@ -1,8 +1,9 @@
 //
 //  Option+CoreDataProperties.swift
-//  
+//  AgentDesksAssignment
 //
-//  Created by Himanshu on 11/05/18.
+//  Created by Himanshu on 12/05/18.
+//  Copyright © 2018 Himanshu. All rights reserved.
 //
 //
 
@@ -16,8 +17,26 @@ extension Option {
         return NSFetchRequest<Option>(entityName: "Option")
     }
 
+    @NSManaged public var icon: String?
     @NSManaged public var id: String?
     @NSManaged public var name: String?
-    @NSManaged public var icon: String?
+    @NSManaged public var exclusions: NSSet?
+
+}
+
+// MARK: Generated accessors for exclusions
+extension Option {
+
+    @objc(addExclusionsObject:)
+    @NSManaged public func addToExclusions(_ value: Option)
+
+    @objc(removeExclusionsObject:)
+    @NSManaged public func removeFromExclusions(_ value: Option)
+
+    @objc(addExclusions:)
+    @NSManaged public func addToExclusions(_ values: NSSet)
+
+    @objc(removeExclusions:)
+    @NSManaged public func removeFromExclusions(_ values: NSSet)
 
 }

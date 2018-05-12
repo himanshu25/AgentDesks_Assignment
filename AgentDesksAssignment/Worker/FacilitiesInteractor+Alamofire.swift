@@ -11,8 +11,6 @@ import Foundation
 import Alamofire
 
 extension FacilitiesWorker {
-    public typealias facilitiesCompletionBlock = (NSError?, [String]?) -> Void
-
     
     func request(url: String, type: HTTPMethod, with completion: @escaping facilitiesCompletionBlock) {
         Alamofire.request(url, method: type).responseJSON { response in
@@ -21,10 +19,11 @@ extension FacilitiesWorker {
                     let responseResult = response.result
                     guard let resultsDictionary = responseResult.value as? [String: AnyObject], let facilities = resultsDictionary["facilities"] as? [[String: AnyObject]] else {return}
                     for facility in facilities {
-                        print(facility)
+                        let f = Facilities(facility: facility)
+                        self.facilitiesArray.append(f)
                     }
                 }
-                completion(nil, [""])
+                completion(nil, self.facilitiesArray)
             }
             response.result.ifFailure {
                 DispatchQueue.main.async {

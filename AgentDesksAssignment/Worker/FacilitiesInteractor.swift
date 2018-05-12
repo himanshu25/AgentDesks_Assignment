@@ -10,7 +10,8 @@ import Foundation
 import Alamofire
 
 class FacilitiesWorker {
-    
+    public typealias facilitiesCompletionBlock = (NSError?, [Facilities]?) -> Void
+//    var facilitiesArray = [Facilities]()
     static let sharedInstance = FacilitiesWorker()
 
     // Use it if you want to use Alamofire
@@ -26,8 +27,19 @@ class FacilitiesWorker {
                 do {
                     let facilitiesJson = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
                     let facilitiesDict = facilitiesJson as? [String: AnyObject]
-                    print(facilitiesDict)
-                    completion(nil, [""])
+                    let facilityArray = facilitiesDict!["facilities"] as? [[String: AnyObject]]
+//                    var facilities = [Facilities]()
+//                    for facility in facilityArray! {
+//                        let f = Facilities(facility: facility)
+//                        facilities.append(f)
+//                    }
+                    // find combinations of mutually exclusive options nc2
+                    // Example: {a,b,c} -> {{a,b}, {a,c}, {b,c}}
+                    // starting with {a,b}, find facility Fa with id a.Fid & Fb with id b.Fid
+                    // Find option a.Oid in facility Fa , same for b
+                    // Add option b.Oid as exclusion of a.Oid
+                    // Do the same for {a,c}, {b,c}
+                    completion(nil, facilities)
                 } catch let error as NSError {
                     print(error.localizedDescription)
                 }

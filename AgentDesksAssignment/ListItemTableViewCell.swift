@@ -8,13 +8,18 @@
 
 import UIKit
 
-public class ListItemTableViewCell: UITableViewCell {
+protocol ListItemCellDelegate: class {
+    func listItemCellSelected(_ listItemViewCell: ListItemTableViewCell)
+}
+
+public class ListItemTableViewCell: UITableViewCell, ListItemViewDelegate {
     
-    public private(set) var listItemView: ListItemView?
+    @IBOutlet weak var listItemView: ListItemView!
+    weak var delegate: ListItemCellDelegate?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
+       // setupUI()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -23,24 +28,17 @@ public class ListItemTableViewCell: UITableViewCell {
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        setupUI()
+         // setupUI()
     }
-    
-    public func configure() {
-        listItemView?.layoutIfNeeded()
-    }
-    
-//    override public func setHighlighted(_ highlighted: Bool, animated: Bool) {
-//        contentView.backgroundColor = UIColor.white
-//    }
-//    
-//    override public func setSelected(_ selected: Bool, animated: Bool) {
-//        contentView.backgroundColor = UIColor.white
-//    }
 
-    private func setupUI() {
-        self.listItemView = ListItemView()
+    public func setupUI() {
+        listItemView.delegate = self
+        listItemView.setupUI()
         contentView.addSubview(listItemView!)
+    }
+    
+    func listItemSelected(_ listItemView: ListItemView) {
+        delegate?.listItemCellSelected(self)
     }
     
 }

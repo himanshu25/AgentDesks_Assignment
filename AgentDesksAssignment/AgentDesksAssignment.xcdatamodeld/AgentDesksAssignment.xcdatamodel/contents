@@ -3,14 +3,16 @@
     <entity name="Facility" representedClassName="Facility" syncable="YES" codeGenerationType="class">
         <attribute name="facilityId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="options" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Option" syncable="YES"/>
     </entity>
     <entity name="Option" representedClassName="Option" syncable="YES" codeGenerationType="class">
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="exclusions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Option" inverseName="exclusions" inverseEntity="Option" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Facility" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="Option" positionX="-54" positionY="9" width="128" height="90"/>
+        <element name="Facility" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Option" positionX="214" positionY="255" width="128" height="103"/>
     </elements>
 </model>

@@ -8,48 +8,20 @@
 
 import UIKit
 
-@IBDesignable
+protocol ListItemViewDelegate: class {
+    func listItemSelected(_ listItemView: ListItemView)
+}
+
 public class ListItemView: UIView {
     
-    @IBInspectable
+    var vm: ViewModel?
+    weak var delegate: ListItemViewDelegate?
     public var titleText: String? {
         didSet {
             titleLabel.text = titleText
         }
     }
-    
-    @IBInspectable
-    public var subTitleText: String? = nil {
-        didSet {
-            if let subTitleText = subTitleText {
-                subTitleLabel.text = subTitleText
-                subTitleBottomLabel.text = subTitleText
-            }
-            else {
-                subTitleLabel.isHidden = true
-                subTitleBottomLabel.isHidden = true
-            }
-        }
-    }
-    
-    @IBInspectable
-    public var subTitleTextColor: UIColor? = nil {
-        didSet {
-            if let subTitleTextColor = subTitleTextColor {
-                subTitleLabel.textColor = subTitleTextColor
-                subTitleBottomLabel.textColor = subTitleTextColor
-            }
-        }
-    }
 
-    public var subTitleAtTheBottom: Bool = false {
-        didSet {
-            subTitleLabel.isHidden = subTitleAtTheBottom
-            subTitleBottomLabel.isHidden = !subTitleAtTheBottom
-        }
-    }
-    
-    @IBInspectable
     public var leftIconImage: UIImage? {
         didSet {
             if let leftIconImage = leftIconImage {
@@ -61,68 +33,10 @@ public class ListItemView: UIView {
             }
         }
     }
+    @IBOutlet weak var leftIconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var rightIconImageView: UIImageView!
     
-    @IBInspectable
-    public var rightText: String? = nil {
-        didSet {
-            if let rightText = rightText {
-                rightTextLabel.text = rightText
-                rightTextLabel.isHidden = false
-                rightIconImageView.isHidden = true
-            }
-            else {
-                rightTextLabel.isHidden = false
-                rightIconImageView.isHidden = true
-            }
-        }
-    }
-    
-    @IBInspectable
-    public var rightIconImage: UIImage? {
-        didSet {
-            if let rightIconImage = rightIconImage {
-                rightIconImageView.image = rightIconImage
-                rightIconImageView.isHidden = false
-                rightIconImageView.superview?.isHidden = false
-                rightTextLabel.isHidden = true
-                rightIconImageIsSet = true
-            }
-            else {
-                rightIconImageView.superview?.isHidden = true
-                rightTextLabel.isHidden = false
-                rightIconImageView.isHidden = true
-            }
-        }
-    }
-    private var rightIconImageIsSet = false
-    
-    @IBInspectable
-    public var isDisclosureHidden: Bool = true {
-        didSet {
-            disclosureImageView.isHidden = isDisclosureHidden
-        }
-    }
-    
-    @IBInspectable
-    public var isSeparatorHidden: Bool = true {
-        didSet {
-            separatorView.isHidden = isSeparatorHidden
-        }
-    }
-    
-    @IBOutlet private weak var leftIconImageView: UIImageView!
-    
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subTitleLabel: UILabel!
-    @IBOutlet private weak var subTitleBottomLabel: UILabel!
-    
-    @IBOutlet private weak var rightTextLabel: UILabel!
-    @IBOutlet internal weak var rightIconImageView: UIImageView!
-    @IBOutlet private weak var disclosureImageView: UIImageView!
-    
-    @IBOutlet private weak var separatorView: UIView!
-    
-    @IBOutlet private weak var contentLeftOffsetConstraint: NSLayoutConstraint!
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -132,12 +46,12 @@ public class ListItemView: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         loadNib()
-        setupUI()
+       // setupUI()
     }
     
     public override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        setupUI()
+        // setupUI()
     }
     
     public override func awakeFromNib() {
@@ -145,37 +59,25 @@ public class ListItemView: UIView {
         setupUI()
     }
     
-    private func setupUI() {
-        titleLabel.text = titleText
-        subTitleLabel.text = subTitleText
-        subTitleBottomLabel.text = subTitleText
-        subTitleAtTheBottom = true
-        if let leftIconImage = leftIconImage {
-            leftIconImageView.image = leftIconImage
+    public func setupUI() {
+        if let vm = vm {
+            if vm.icon.isEmpty {
+                rightIconImageView.image = nil
+                leftIconImageView.image = nil
+                titleLabel.textColor = UIColor.black
+            }
+            else {
+                leftIconImage = UIImage(named: vm.icon)
+            }
+            titleText = vm.name
         }
-        else {
-            leftIconImageView.isHidden = true
-        }
-        if let rightText = rightText {
-            rightTextLabel.text = rightText
-            rightTextLabel.isHidden = false
-            rightIconImageView.isHidden = true
-        }
-        else {
-            rightTextLabel.isHidden = true
-            rightIconImageView.isHidden = true
-        }
-        if let rightIconImage = rightIconImage {
-            rightIconImageView.image = rightIconImage
-            rightIconImageView.isHidden = false
-            rightTextLabel.isHidden = true
-        }
-        else {
-            rightTextLabel.isHidden = false
-            rightIconImageView.isHidden = true
-            rightIconImageView.superview?.isHidden = true
-        }
-        disclosureImageView.isHidden = isDisclosureHidden
-        separatorView.isHidden = true
     }
+    
+    @IBAction func selected(_ sender: UIButton) {
+        if !(vm?.icon.isEmpty)! {
+            rightIconImageView.image = UIImage(named: "Radio Filled")
+        }
+        delegate?.listItemSelected(self)
+    }
+    
 }
