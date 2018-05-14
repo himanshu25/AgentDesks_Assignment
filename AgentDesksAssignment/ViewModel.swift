@@ -13,7 +13,7 @@ class ViewModel {
     let name: String!
     let id: String!
     
-    init(icon: String, name: String, id: String) {
+    init(icon: String?, name: String, id: String) {
         self.icon = icon
         self.name = name
         self.id = id

@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ListItemCellDelegate {
     
     @IBOutlet weak var contentTable: UITableView!
-    var facilities = [Facilities]()
-    var vmArray = [ViewModel]()
+    var facilities = [Facility]()
     var cellArray = [ListItemTableViewCell]()
+    var vmArray = [ViewModel]()
     var selectedId = ""
 
     
@@ -27,36 +28,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if let strongSelf = self, let facilities = facilities {
                 strongSelf.facilities = facilities
                 for f in facilities {
-                    strongSelf.vmArray.append(f.vm)
-                    for o in f.optionsArray {
-                        strongSelf.vmArray.append(o.vm)
+                    let vm = ViewModel(icon: nil, name: f.name!, id: f.facilityId!)
+                    strongSelf.vmArray.append(vm)
+                    for o in f.options! {
+                        let opt = o as! Option
+                        
+                        let vm = ViewModel(icon: opt.icon!, name: opt.name!, id: opt.id!)
+                        strongSelf.vmArray.append(vm)
                     }
                 }
                 DispatchQueue.main.sync {
-                    strongSelf.contentTable.reloadData()
+                    self?.contentTable.reloadData()
                 }
-            }
         }
+    }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = 0
-        for f in facilities {
-            count += 1
-            for o in f.optionsArray {
-                count += 1
-            }
-        }
-        return count
+       return vmArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = contentTable.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ListItemTableViewCell
-        if vmArray.count > 0 {
-            cell.delegate = self
-            cell.listItemView.vm = vmArray[indexPath.row]
-            cell.setupUI()
-            cellArray.append(cell)
+        cell.listItemView.titleLabel.text = vmArray[indexPath.row].name
+        if let icon = vmArray[indexPath.row].icon {
+          cell.listItemView.leftIconImage = UIImage(named: icon)
         }
         return cell
     }
@@ -66,9 +62,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func listItemCellSelected(_ listItemViewCell: ListItemTableViewCell) {
-        if listItemViewCell.listItemView.vm?.id != selectedId {
-            showErrorMessage()
-        }
+       
     }
     
     func showErrorMessage() {

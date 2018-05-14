@@ -1,10 +1,11 @@
 //
 //  ListItemTableViewCell.swift
-//  CareUI
+//  AgentDesksAssignment
 //
-//  Created by Pavel Zhuravlev on 12/20/16.
-//  Copyright © 2016 Care.com. All rights reserved.
+//  Created by Himanshu on 11/05/18.
+//  Copyright © 2018 Himanshu. All rights reserved.
 //
+
 
 import UIKit
 

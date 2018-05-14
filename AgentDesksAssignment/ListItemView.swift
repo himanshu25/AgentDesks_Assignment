@@ -1,9 +1,9 @@
 //
 //  ListItemView.swift
-//  CareUI
+//  AgentDesksAssignment
 //
-//  Created by Pavel Zhuravlev on 12/19/16.
-//  Copyright © 2016 Care.com. All rights reserved.
+//  Created by Himanshu on 11/05/18.
+//  Copyright © 2018 Himanshu. All rights reserved.
 //
 
 import UIKit
@@ -14,7 +14,6 @@ protocol ListItemViewDelegate: class {
 
 public class ListItemView: UIView {
     
-    var vm: ViewModel?
     weak var delegate: ListItemViewDelegate?
     public var titleText: String? {
         didSet {
@@ -60,23 +59,13 @@ public class ListItemView: UIView {
     }
     
     public func setupUI() {
-        if let vm = vm {
-            if vm.icon.isEmpty {
                 rightIconImageView.image = nil
                 leftIconImageView.image = nil
                 titleLabel.textColor = UIColor.black
-            }
-            else {
-                leftIconImage = UIImage(named: vm.icon)
-            }
-            titleText = vm.name
-        }
     }
     
     @IBAction func selected(_ sender: UIButton) {
-        if !(vm?.icon.isEmpty)! {
-            rightIconImageView.image = UIImage(named: "Radio Filled")
-        }
+        rightIconImageView.image = UIImage(named: "Radio Filled")
         delegate?.listItemSelected(self)
     }
     

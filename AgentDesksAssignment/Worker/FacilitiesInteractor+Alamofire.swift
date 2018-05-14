@@ -18,10 +18,6 @@ extension FacilitiesWorker {
                 DispatchQueue.main.async {
                     let responseResult = response.result
                     guard let resultsDictionary = responseResult.value as? [String: AnyObject], let facilities = resultsDictionary["facilities"] as? [[String: AnyObject]] else {return}
-                    for facility in facilities {
-                        let f = Facilities(facility: facility)
-                        self.facilitiesArray.append(f)
-                    }
                 }
                 completion(nil, self.facilitiesArray)
             }
