@@ -2,18 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Facility+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Facility+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Option+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Option+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:AgentDesksAssignment.xcodeproj">
    </FileRef>
    <FileRef
