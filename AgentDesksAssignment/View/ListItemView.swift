@@ -45,12 +45,10 @@ public class ListItemView: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         loadNib()
-       // setupUI()
     }
     
     public override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        // setupUI()
     }
     
     public override func awakeFromNib() {
@@ -59,9 +57,9 @@ public class ListItemView: UIView {
     }
     
     public func setupUI() {
-                rightIconImageView.image = nil
-                leftIconImageView.image = nil
-                titleLabel.textColor = UIColor.black
+        rightIconImageView.image = nil
+        leftIconImageView.image = nil
+        titleLabel.textColor = UIColor.black
     }
     
     @IBAction func selected(_ sender: UIButton) {

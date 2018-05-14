@@ -20,10 +20,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contentTable.dataSource = self
-        contentTable.delegate = self
-        contentTable.estimatedRowHeight = 200
-        contentTable.tableFooterView = nil
+        setupTableView()
         FacilitiesWorker.sharedInstance.getAllFacilities { [weak self] (error, facilities) in
             if let strongSelf = self, let facilities = facilities {
                 strongSelf.facilities = facilities
@@ -42,6 +39,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
         }
     }
+    }
+    
+    private func setupTableView(){
+        contentTable.dataSource = self
+        contentTable.delegate = self
+        contentTable.estimatedRowHeight = 200
+        contentTable.tableFooterView = nil
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,7 +69,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
        
     }
     
-    func showErrorMessage() {
+   private func showErrorMessage() {
         let popoverView = PopoverView()
             .with(messageTitle: "Error")
             .with(messageText: "Please select proper combination")

@@ -146,9 +146,7 @@
 		A30B6DF520A4C7D5001D6E4B /* AgentDesksAssignment */ = {
 			isa = PBXGroup;
 			children = (
-				A30B6E6320A4DDD2001D6E4B /* ListItemTableViewCell.swift */,
-				A30B6E6220A4DDD2001D6E4B /* ListItemView.swift */,
-				A30B6E6020A4DDD2001D6E4B /* ListItemView.xib */,
+				A332F3CE20A985AC00E6C30C /* View */,
 				A30B6E5020A4DA6D001D6E4B /* Worker */,
 				A30B6E2720A4C81E001D6E4B /* Reusable components */,
 				A30B6DF620A4C7D5001D6E4B /* AppDelegate.swift */,
@@ -199,6 +197,16 @@
 				A332F3CB20A9677B00E6C30C /* DataManager.swift */,
 			);
 			path = Worker;
+			sourceTree = "<group>";
+		};
+		A332F3CE20A985AC00E6C30C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A30B6E6020A4DDD2001D6E4B /* ListItemView.xib */,
+				A30B6E6220A4DDD2001D6E4B /* ListItemView.swift */,
+				A30B6E6320A4DDD2001D6E4B /* ListItemTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DB77636C68C27BB5132C13A7 /* Pods */ = {
