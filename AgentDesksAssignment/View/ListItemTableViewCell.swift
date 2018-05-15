@@ -17,13 +17,16 @@ public class ListItemTableViewCell: UITableViewCell, ListItemViewDelegate {
     
     @IBOutlet weak var listItemView: ListItemView!
     weak var delegate: ListItemCellDelegate?
+    var vm: ViewModel!
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+      //  setupUI()
     }
     
     override public func awakeFromNib() {
         super.awakeFromNib()
+       // setupUI()
     }
 
     public func setupUI() {

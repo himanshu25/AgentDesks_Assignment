@@ -9,13 +9,11 @@
 import Foundation
 
 class ViewModel {
-    let icon: String!
-    let name: String!
-    let id: String!
+    let option: Option?
+    let facility: Facility?
     
-    init(icon: String?, name: String, id: String) {
-        self.icon = icon
-        self.name = name
-        self.id = id
+    init(option: Option?, facility: Facility?) {
+        self.option = option
+        self.facility = facility
     }
 }

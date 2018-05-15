@@ -10,7 +10,7 @@
 import Foundation
 import Alamofire
 
-extension FacilitiesWorker {
+extension FacilityWorker {
     
     func request(url: String, type: HTTPMethod, with completion: @escaping facilitiesCompletionBlock) {
         Alamofire.request(url, method: type).responseJSON { response in
@@ -23,7 +23,7 @@ extension FacilitiesWorker {
             }
             response.result.ifFailure {
                 DispatchQueue.main.async {
-                    let code = response.response?.statusCode ?? 0
+                    let _ = response.response?.statusCode ?? 0
                     completion(nil, nil)
                 }
             }

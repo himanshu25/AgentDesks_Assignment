@@ -38,7 +38,7 @@
                                 </label>
                             </subviews>
                         </stackView>
-                        <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="Emptry Check" translatesAutoresizingMaskIntoConstraints="NO" id="yln-Ji-KYW">
+                        <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="Empty Check" translatesAutoresizingMaskIntoConstraints="NO" id="yln-Ji-KYW">
                             <rect key="frame" x="337" y="27.5" width="21" height="21"/>
                         </imageView>
                     </subviews>
@@ -74,7 +74,7 @@
         </view>
     </objects>
     <resources>
-        <image name="Emptry Check" width="21" height="21"/>
+        <image name="Empty Check" width="21" height="21"/>
         <image name="boat" width="25" height="25"/>
     </resources>
 </document>

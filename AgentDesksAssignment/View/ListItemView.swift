@@ -15,6 +15,8 @@ protocol ListItemViewDelegate: class {
 public class ListItemView: UIView {
     
     weak var delegate: ListItemViewDelegate?
+    private var isSelected = false
+    var vm: ViewModel!
     public var titleText: String? {
         didSet {
             titleLabel.text = titleText
@@ -59,12 +61,17 @@ public class ListItemView: UIView {
     public func setupUI() {
         rightIconImageView.image = nil
         leftIconImageView.image = nil
-        titleLabel.textColor = UIColor.black
     }
     
     @IBAction func selected(_ sender: UIButton) {
-        rightIconImageView.image = UIImage(named: "Radio Filled")
-        delegate?.listItemSelected(self)
+        if isSelected {
+            isSelected = false
+            rightIconImageView.image = UIImage(named: "Empty Check")
+        }
+        else {
+            isSelected = true
+            delegate?.listItemSelected(self)
+        }
     }
     
 }

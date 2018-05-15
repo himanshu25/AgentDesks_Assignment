@@ -12,10 +12,10 @@ import UIKit
 
 class DataManager: NSObject {
     static let sharedInstance = DataManager()
-    
+    var exclusionsArray =  [[[String: AnyObject]]]()
+
     func getContext () -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
+        return CoreDataStack.sharedInstance.persistentContainer.viewContext
     }
     
     func request() -> NSFetchRequest<NSFetchRequestResult> {
@@ -27,34 +27,45 @@ class DataManager: NSObject {
     
     func createFacility(dictionary: [String: AnyObject]) -> NSManagedObject? {
         let context = getContext()
-        if let facilityEntity = NSEntityDescription.insertNewObject(forEntityName: "Facility", into: context) as? Facility {
-            facilityEntity.facilityId = dictionary["facility_id"] as? String
-            facilityEntity.name = dictionary["name"] as? String
+        if let facility = NSEntityDescription.insertNewObject(forEntityName: "Facility", into: context) as? Facility {
+            facility.facilityId = dictionary["facility_id"] as? String
+            facility.name = dictionary["name"] as? String
             if let options = dictionary["options"] as? [[String: AnyObject]] {
                 for option in options {
-                    facilityEntity.addToOptions((createOption(dictionary: option) as! Option))
+                    facility.addToOptions((createOption(dictionary: option) as! Option))
+                    }
                 }
-            }
-            return facilityEntity
+            return facility
         }
         return nil
     }
     
     func createOption(dictionary: [String: AnyObject]) -> NSManagedObject? {
         let context = getContext()
-        if let optionEntity = NSEntityDescription.insertNewObject(forEntityName: "Option", into: context) as? Option {
-            optionEntity.id = dictionary["id"] as? String
-            optionEntity.name = dictionary["name"] as? String
-            optionEntity.icon = dictionary["icon"] as? String
-            //            for exclusionObjectarray in  exclusionsArray {
-            //                let id = exclusionObjectarray[0]["options_id"] as! String
-            //                let excludedId = exclusionObjectarray[1]["options_id"] as! String
-            //                if id == optionEntity.id || excludedId == optionEntity.id {
-            //                    optionEntity.addToExclusions(optionEntity)
-            //                }
-            //            }
-            return optionEntity
+        if let option = NSEntityDescription.insertNewObject(forEntityName: "Option", into: context) as? Option {
+            option.id = dictionary["id"] as? String
+            option.name = dictionary["name"] as? String
+            option.icon = dictionary["icon"] as? String
+            return option
         }
         return nil
+    }
+    
+    func createExclusion(dictionary: [String: AnyObject]) -> NSManagedObject? {
+        let context = getContext()
+        if let option = NSEntityDescription.insertNewObject(forEntityName: "Option", into: context) as? Option {
+            option.id = dictionary["options_id"] as? String
+            return option
+        }
+        return nil
+    }
+    
+    func saveFacilityInCoreDataWith(array: [[String: AnyObject]]) {
+        _ = array.map{createFacility(dictionary: $0)}
+        do {
+            try CoreDataStack.sharedInstance.persistentContainer.viewContext.save()
+        } catch let error {
+            print(error)
+        }
     }
 }
