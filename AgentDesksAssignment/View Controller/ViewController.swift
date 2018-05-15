@@ -13,21 +13,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var contentTable: UITableView!
     var facilities = [Facility]()
-    var cellArray = [ListItemTableViewCell]()
-    var vmArray = [ViewModel]()
-    var firstSelectedOption: Option?
-    var secondSelectedOption: Option?
-    var firstSelectedfacility: Facility?
-    var secondSelectedFacility: Facility?
-    var excludedOption: NSSet?
-    var totalTap = 0
-    var currentListItemView = ListItemView()
+    private var cellArray = [ListItemTableViewCell]()
+    private var vmArray = [ViewModel]()
+    private var firstSelectedOption: Option?
+    private var secondSelectedOption: Option?
+    private var firstSelectedfacility: Facility?
+    private var secondSelectedFacility: Facility?
+    private var excludedOption: NSSet?
+    private var currentListItemView = ListItemView()
     
     lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: Facility.self))
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        // frc.delegate = self
         return frc
     }()
 
@@ -90,6 +88,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return 50
     }
     
+    // To Do:  Divide it in separate responsbility
     func listItemSelected(_ listItemView: ListItemView) {
         if firstSelectedfacility == nil {
             firstSelectedfacility = listItemView.vm.facility
@@ -101,7 +100,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 for cell in cellArray {
                     if let option = cell.listItemView.vm.option {
                         cell.listItemView.rightIconImageView.image = UIImage(named: "Empty Check")
-
                     }
                 }
                 listItemView.rightIconImageView.image = UIImage(named: "Radio Filled")
@@ -116,22 +114,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     firstSelectedfacility = secondSelectedFacility
                     secondSelectedFacility = nil
                     secondSelectedOption = nil
-                    
                 }
-                
             }
             else {
                 secondSelectedFacility = listItemView.vm.facility
                 secondSelectedOption = listItemView.vm.option
                 var isFirstOption = false
                 var isSecondOption = false
-                for e in (listItemView.vm.option?.exclusions)! {
-                    if (e as! Option).id == firstSelectedOption?.id {
+                for ex in (listItemView.vm.option?.exclusions)! {
+                    if (ex as! Option).id == firstSelectedOption?.id {
                         isFirstOption = true
                     }
                 }
-                for e in (listItemView.vm.option?.exclusions)! {
-                    if (e as! Option).id == secondSelectedOption?.id {
+                for ex in (listItemView.vm.option?.exclusions)! {
+                    if (ex as! Option).id == secondSelectedOption?.id {
                         isSecondOption = true
                     }
                 }
@@ -140,7 +136,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
                 else {
                     listItemView.rightIconImageView.image = UIImage(named: "Radio Filled")
-                    
                 }
             }
         }
